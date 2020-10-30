@@ -4,17 +4,26 @@ import { FormsModule,ReactiveFormsModule,FormBuilder, Validators } from '@angula
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+
+
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import { IconDefinition } from '@ant-design/icons-angular';
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import {DemoNgZorroAntdModule} from './ng-zorro.module';
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+ 
     HomeComponent,
     CounterComponent,
     FetchDataComponent
@@ -33,7 +42,7 @@ import {DemoNgZorroAntdModule} from './ng-zorro.module';
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [ {provide:NZ_ICONS,useValue:icons}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -122,7 +122,7 @@ namespace PlantCourse
                   // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
-            SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
+           // SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
         }
 
     }

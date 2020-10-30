@@ -3,6 +3,9 @@
 /* Provide sufficient contrast against white background */
 
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
+body{
+  background-color: #AAD08A;
+}
 a {
   color: #0366d6;
 }

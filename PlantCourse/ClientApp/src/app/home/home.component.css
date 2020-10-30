@@ -1,0 +1,17 @@
+.NameSyte{
+    color: #3B312B;
+}
+.ant-col {
+    display: grid;
+ 
+}
+.ant-btn-primary:focus, .ant-btn-primary:hover {
+    color: #fff;
+    background-color: #F37947;
+    border-color: #F37947;
+}
+.ant-btn-primary{
+    color: #fff;
+    background-color: #255930;
+    border-color: #255930;
+}

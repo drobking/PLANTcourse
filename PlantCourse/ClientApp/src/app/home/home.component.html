@@ -1,8 +1,15 @@
-<form nz-form   (ngSubmit)="submitForm()">
+
+
+<div class="col-12 p-5 d-flex justify-content-center">
+  <h1 class="NameSyte">Plant Monitoring</h1>
+</div>
+
+<div class="col-12 d-flex justify-content-center">
+<form class="col-4"  nz-form (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">
-        <input  nz-input placeholder="Username" />
+        <input  nz-input placeholder="Email" />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -14,8 +21,9 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-control>
+    <nz-form-control  class="justify-content-end">
       <button nz-button nzType="primary">Log in</button>
     </nz-form-control>
   </nz-form-item>
 </form>
+</div>
