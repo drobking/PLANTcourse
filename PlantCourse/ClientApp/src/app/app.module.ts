@@ -4,12 +4,13 @@ import { FormsModule,ReactiveFormsModule,FormBuilder, Validators } from '@angula
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-
+import { ChartsModule, ThemeService } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { AppComponent } from './app.component';
-
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
@@ -33,8 +34,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HttpClientModule,
     FormsModule,
     DemoNgZorroAntdModule,
-    
-   
+    ChartsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
    
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -42,7 +44,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [ {provide:NZ_ICONS,useValue:icons}],
+  providers: [ NgxSpinnerService,{provide:NZ_ICONS,useValue:icons},ThemeService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

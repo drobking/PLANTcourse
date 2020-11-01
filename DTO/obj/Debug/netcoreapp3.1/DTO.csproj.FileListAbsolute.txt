@@ -1,0 +1,9 @@
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\bin\Debug\netcoreapp3.1\DTO.deps.json
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\bin\Debug\netcoreapp3.1\DTO.dll
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\bin\Debug\netcoreapp3.1\DTO.pdb
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.csprojAssemblyReference.cache
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfoInputs.cache
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfo.cs
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.csproj.CoreCompileInputs.cache
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.dll
+C:\Users\egord\Desktop\ITStep preSemester\PlantCourse\DTO\obj\Debug\netcoreapp3.1\DTO.pdb

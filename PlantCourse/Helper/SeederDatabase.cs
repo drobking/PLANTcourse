@@ -34,6 +34,7 @@ namespace PlantCourse.Helper
                 HumidityGras=100,
                 Name="Gosha",
                 Water=20
+                
             });
             _context.Plants.Add(new Plant
             {
