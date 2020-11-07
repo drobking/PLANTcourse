@@ -60,7 +60,7 @@ namespace PlantCourse.Helper
                 Name = "putin",
                 Water = 24560
             });
-            _context.SaveChanges();
+          //  _context.SaveChanges();
             var roleName = "Admin";
             if (roleManager.FindByNameAsync(roleName).Result == null)
             {

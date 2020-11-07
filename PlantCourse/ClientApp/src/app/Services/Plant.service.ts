@@ -14,4 +14,9 @@ export class PlantService{
     getAllPlants(): Observable<Plant[]> {
       return this.http.get<Plant[]>(this.baseUrl);
     }
+    postNamePlants(plant:string,userName:string):void{
+//const body={name: plant.name}
+     // this.http.post(this.baseUrl,plant,userName);
+    }
+    
 }

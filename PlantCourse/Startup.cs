@@ -1,6 +1,7 @@
 using DataAccess;
 using DataAccess.Entity;
 using Domain.Implementations;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,7 +47,7 @@ namespace PlantCourse
                 opt.Password.RequireUppercase = true;
                 opt.Password.RequireNonAlphanumeric = false;
             });
-            services.AddTransient<JWTTokenService, JWTTokenService>();
+            services.AddTransient<IJWTTokenService, JWTTokenService>();
             var jwtTokenSecretKey = Configuration.GetValue<string>("SecretPhrase");
             var signInKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtTokenSecretKey));
 
@@ -99,9 +100,13 @@ namespace PlantCourse
             {
                 app.UseSpaStaticFiles();
             }
-
+            app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -122,7 +127,7 @@ namespace PlantCourse
                   // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
-           // SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
+            SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
         }
 
     }

@@ -1,7 +1,72 @@
-<div class="flex">
-  <div class="flex-item">
-    <div style="display: block;">
-    <canvas baseChart width="400px" height="400px"
+<div class="d-flex row">
+  <app-sideBar class="col-12"></app-sideBar>
+  <div class="flex-item col-12">
+    <div class="chart10" style="display: flex;">
+      <div class="col-7 p-4">
+    <canvas  baseChart width="400px" height="400px"
+                [datasets]="lineChartData10"
+                [labels]="lineChartLabels10"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)" class="ChartsDiagram "></canvas> </div>
+                  <div class="col-5">
+        
+      <div>
+        <div class="chart d-flex d-flex justify-content-center">
+          <canvas baseChart
+            [data]="pieChartDataHum"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
+      
+
+      <div>
+        <div class="chart d-flex d-flex justify-content-center">
+          <canvas baseChart
+            [data]="pieChartDataTem"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="chart d-flex d-flex justify-content-center">
+          <canvas baseChart
+            [data]="pieChartDataWater"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
+
+    </div>
+    </div>
+ 
+  </div>
+ 
+  <div class="flex-item col-12 p-4">
+    <div style="display: flex;">
+    <canvas  baseChart width="400px" height="400px"
                 [datasets]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"
@@ -10,22 +75,11 @@
                 [chartType]="lineChartType"
                 [plugins]="lineChartPlugins"
                 (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+                (chartClick)="chartClicked($event)" class="ChartsDiagram col-12"></canvas>
     </div>
   </div>
-  <div class="flex-item">
-    <table class="table table-responsive table-condensed">
-      <tr>
-        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-      </tr>
-      <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-      </tr>
-    </table>
-    <button mat-button mat-raised-button color="primary" (click)="qwerty()">Randomize</button>
-    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
-    <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
-    <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button>
-  </div>
+  <form class="" #myForm="ngForm" nz-form (ngSubmit)="AddPlant()">
+    <input [(ngModel)]="plantName" name="Plant" nz-input placeholder="Name" />
+    <button type="submit" nz-button nzType="primary">Add</button>
+    </form>
 </div>

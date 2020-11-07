@@ -13,6 +13,7 @@
 #define DHTTYPE DHT11 
 uint8_t DHTPin = D8; 
 uint8_t waterSensor=A0;
+uint8_t HumidityGrasPin = D5;
 DHT dht(DHTPin, DHTTYPE);      
 /* this can be run with an emulated server on host:
         cd esp8266-core-root-dir
@@ -61,15 +62,16 @@ void loop() {
 
     Serial.print("[HTTP] begin...\n");
     // configure traged server and url
-   http.begin(client, "http://e21625e92728.ngrok.io/api/Plant/"); //HTTP
+   http.begin(client, "http://4350b4dfd635.ngrok.io/api/Plant/"); //HTTP
     http.addHeader("Content-Type", "application/json");
 
     Serial.print("[HTTP] POST...\n");
     // start connection and send HTTP header and body
     int Temperature = dht.readTemperature(); // Gets the values of the temperature
     int Humidity = dht.readHumidity(); // Gets the values of the humidity 
+    int HumidityGras=analogRead(HumidityGrasPin);
     int water=analogRead(waterSensor);
-    String str="{ \"name\": \"qqqq\",\"humidity\": "+((String)Humidity)+",\"temperature\": "+((String)Temperature)+",\"humidityGras\": 99999,\"water\": "+((String)water)+"}";
+    String str="{ \"name\": \"PlantEgora\",\"humidity\": "+((String)Humidity)+",\"temperature\": "+((String)Temperature)+",\"humidityGras\": "+((String)water)+",\"water\": "+((String)HumidityGras)+"}";
     //String str1=",\"temperature\": "+Temperature;
     //String str2=",\"humidityGras\": 99999,\"water\": 9999}";
     //String res=str+str1+str2;

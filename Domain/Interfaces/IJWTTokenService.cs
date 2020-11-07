@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Interfaces
 {
-    interface IJWTTokenService
+   public interface IJWTTokenService
     {
         string CreateToken(User user);
     }

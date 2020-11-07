@@ -6,6 +6,7 @@ using DataAccess;
 using DataAccess.Entity;
 using DTO.Models;
 using DTO.Models.Result;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace PlantCourse.Controllers
             _context = context;
         }
         [HttpGet]
+        [Authorize]
         public List<PlantDTO> getAllPlants()
         {
             return _context.Plants.Select(t => new PlantDTO
@@ -50,5 +52,17 @@ namespace PlantCourse.Controllers
                 Status = 200
             };
         }
+        //[HttpPost]
+        //public async Task<ResultDTO> AddToUserPlantName(string nmae) {
+           
+        //    var PLant = new Plant {
+        //        Humidity = 0,
+        //        HumidityGras=0,
+        //        Name=nmae,
+        //        Temperature=0,
+        //        Water=0
+        //    };
+        //   // _context.UserAdditioanalInfos.
+        //}
     }
 }

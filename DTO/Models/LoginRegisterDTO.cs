@@ -15,8 +15,7 @@ namespace DTO.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Phone number is required")]
-        public string Phone { get; set; }
+     
 
         [Required(ErrorMessage = "Full name is required")]
         public string FullName { get; set; }

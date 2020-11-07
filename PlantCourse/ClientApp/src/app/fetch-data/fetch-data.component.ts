@@ -6,6 +6,7 @@ import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { Plant } from '../Models/plant.model';
 import { PlantService } from '../Services/Plant.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+//import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 //import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
@@ -29,12 +30,80 @@ listOfDataPlant:Plant[]=[];
         this.spinner.hide(); 
         //this.pushArrayHum(this.listOfDataPlant.map(function(plant:Plant){return plant.humidity}));
         this.pushArrayTem(this.listOfDataPlant.map(function(plant:Plant){return plant.temperature}),this.listOfDataPlant.map(function(plant:Plant){return plant.humidity}));
-    });
+
+    this.pushArrayTem10(this.listOfDataPlant.map(function(plant:Plant){return plant.temperature}).slice(this.listOfDataPlant.length-10),this.listOfDataPlant.map(function(plant:Plant){return plant.humidity}).slice(this.listOfDataPlant.length-10));
+    
+      });
     
     
    
     
   }
+
+  pushRoundHum(num:number): void{
+   
+    console.log(this.pieChartDataHum);
+  }
+
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
+  public pieChartLabels: Label[] = ['Humidity','%'];
+  public pieChartDataHum: number[] = [300,100];
+  public pieChartDataTem: number[] = [300,100];
+  public pieChartDataWater: number[] = [300,100];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  //public pieChartPlugins = [pluginDataLabels];
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
+  ];
+  changeLabels(): void {
+    const words = ['hen', 'variable', 'embryo', 'instal', 'pleasant', 'physical', 'bomber', 'army', 'add', 'film',
+      'conductor', 'comfortable', 'flourish', 'establish', 'circumstance', 'chimney', 'crack', 'hall', 'energy',
+      'treat', 'window', 'shareholder', 'division', 'disk', 'temptation', 'chord', 'left', 'hospital', 'beef',
+      'patrol', 'satisfied', 'academy', 'acceptance', 'ivory', 'aquarium', 'building', 'store', 'replace', 'language',
+      'redeem', 'honest', 'intention', 'silk', 'opera', 'sleep', 'innocent', 'ignore', 'suite', 'applaud', 'funny'];
+    const randomWord = () => words[Math.trunc(Math.random() * words.length)];
+    this.pieChartLabels = Array.apply(null, { length: 3 }).map(_ => randomWord());
+  }
+
+
+
+
+
+
+
+
+
+
+  pushArrayTem10(arg0: number[],arg1:number[]) {
+    var status=[arg0,arg1];
+    console.log(status);
+status.forEach((element,i) => {
+
+  element.forEach(element1 => {
+    this.pushOneStat10(element1,i);
+  });
+});
+  
+  }
+
+
+
   pushArrayTem(arg0: number[],arg1:number[]) {
     var status=[arg0,arg1];
     console.log(status);
@@ -48,13 +117,18 @@ status.forEach((element,i) => {
   }
  
  
-
+  public lineChartData10: ChartDataSets[] = [
+    { data: [], label: 'humidity' },
+    { data: [], label: 'temperature' },
+    //{ data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
+  ];
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'humidity' },
     { data: [], label: 'temperature' },
     //{ data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
   ];
   public lineChartLabels: Label[] = [];
+  public lineChartLabels10: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -176,6 +250,51 @@ status.forEach((element,i) => {
   // }
 
   
+  public pushOneStat10(stat:number,index:number): void {
+    var num;
+    var data:number[];
+
+//this.lineChartData.forEach((x, i) => {
+     // console.log(x);
+     // console.log(i);
+   
+      // if(i==1&&index==0){
+      //   console.log("i==1&&index==0")
+      //    num=stat;const data: number[] = x.data as number[];
+      //    data.push(num);
+         
+      // }
+      // else if(i==0&&index==1){
+      //   console.log("i==0&&index==1")
+      //   num=stat;const data: number[] = x.data as number[];
+      // data.push(num);
+      // this.lineChartLabels.push("|");
+      // }
+     // console.log(num);
+      
+   // });
+    
+    if(index==0){
+      this.lineChartData10.filter(x=>x.label=="temperature").forEach((x)=>{
+       num  = stat;
+       data  = x.data as number[];
+      })
+      data.push(num);
+      console.log(num);
+     // this.lineChartLabels.push("|");
+    }
+    else if(index==1){
+      this.lineChartData10.filter(x=>x.label=="humidity").forEach((x)=>{
+         num = stat;
+       data  = x.data as number[];
+      })
+      data.push(num);
+      console.log(num);
+      this.lineChartLabels10.push("|");
+    }
+  }
+
+
   public pushOneStat(stat:number,index:number): void {
     var num;
     var data:number[];
