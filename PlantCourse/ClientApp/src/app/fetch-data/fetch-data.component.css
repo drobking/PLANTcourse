@@ -7,9 +7,12 @@ canvas{
 .chart10 canvas{
     height: 60vh!important;
 }
-.jj{
-    
+.badge{
+font-size: 22px;
+margin-left: 10%;
+margin-top: 2%;
 }
+
 .ChartsDiagram{
    
     box-shadow: 0px 0px 31px -12px rgba(0,0,0,0.75);

@@ -26,8 +26,9 @@ DHT dht(DHTPin, DHTTYPE);
 //#define SERVER_IP "192.168.1.42"
 
 #ifndef STASSID
-#define STASSID "UKrtelecom_FF9797"
-#define STAPSK  "Znk21_6L"
+//"UKrtelecom_FF9797"
+#define STASSID "simple.net.ua"
+#define STAPSK  "10101983"
 #endif
 
 void setup() {
@@ -62,7 +63,7 @@ void loop() {
 
     Serial.print("[HTTP] begin...\n");
     // configure traged server and url
-   http.begin(client, "http://4350b4dfd635.ngrok.io/api/Plant/"); //HTTP
+   http.begin(client, "http://58f84bfa4cc5.ngrok.io/api/Plant/"); //HTTP
     http.addHeader("Content-Type", "application/json");
 
     Serial.print("[HTTP] POST...\n");
@@ -71,6 +72,12 @@ void loop() {
     int Humidity = dht.readHumidity(); // Gets the values of the humidity 
     int HumidityGras=analogRead(HumidityGrasPin);
     int water=analogRead(waterSensor);
+    if(Humidity>1200){
+      water=600;
+      Temperature=20;
+      Humidity=40;
+      HumidityGras=40;
+      }
     String str="{ \"name\": \"PlantEgora\",\"humidity\": "+((String)Humidity)+",\"temperature\": "+((String)Temperature)+",\"humidityGras\": "+((String)water)+",\"water\": "+((String)HumidityGras)+"}";
     //String str1=",\"temperature\": "+Temperature;
     //String str2=",\"humidityGras\": 99999,\"water\": 9999}";

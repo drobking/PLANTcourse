@@ -1,0 +1,44 @@
+.Weather{
+    background-color: #4C4C4C;
+ 
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+}
+h1{
+    color: #C8C8C8!important;
+}
+.CityName{
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+
+}
+.TopInfo{
+    display: flex;
+ 
+    justify-content: space-around;
+}
+.MainInfo{
+    display: flex;
+}
+.MainInfo .col-3{
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    color: #C8C8C8!important;
+}
+.oneS{
+    border-left: wheat 1px solid;
+}
+.textStat{
+    font-family: 'Abril Fatface', cursive;
+    color: #C8C8C8!important;
+    font-size: 40px;
+}
+hr{
+    margin: 0;
+    background-color: wheat;
+    color: wheat!important;
+    width: 95%;
+    margin-left: 2%;
+}

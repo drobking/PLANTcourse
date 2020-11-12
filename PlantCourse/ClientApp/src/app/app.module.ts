@@ -20,6 +20,7 @@ import { TokenInterceptor } from './interceptor';
 import { SideBarComponent } from './sideBar/sideBar.component';
 import { NotLoginGuard } from './Guards/notLoginGuard';
 import { LoggedInGuard } from './Guards/LoggedInGuard';
+import { WeatherComponent } from './Weather/Weather.component';
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -35,13 +36,14 @@ const conf: NotifierOptions = {
   }
 }
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
  
     HomeComponent,
   
     FetchDataComponent,
-      SideBarComponent
+      SideBarComponent,
+      WeatherComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,8 +55,9 @@ const conf: NotifierOptions = {
     BrowserAnimationsModule,
     NotifierModule.withConfig(conf),
     RouterModule.forRoot([
-      {path:'login',canActivate:[NotLoginGuard],component:HomeComponent,pathMatch:'full'},
-      {path:'fetch-data',canActivate:[LoggedInGuard],pathMatch: 'full',component:FetchDataComponent}
+      {path:'',component:HomeComponent,pathMatch:'full'},
+      {path:'fetch-data',canActivate:[LoggedInGuard],pathMatch: 'full',component:FetchDataComponent},
+      {path:'Weather',canActivate:[LoggedInGuard],pathMatch:'full',component:WeatherComponent}
     ])
   ],
   providers: [ NgxSpinnerService,

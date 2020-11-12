@@ -13,6 +13,7 @@ namespace DataAccess
         {
 
         }
+        public DbSet<UsersAndPlants> usersAndPlants { get; set; }
         public DbSet<Plant> Plants { get; set; }
         public DbSet<UserAdditioanalInfo> UserAdditioanalInfos { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

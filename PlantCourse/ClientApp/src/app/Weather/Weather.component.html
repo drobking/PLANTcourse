@@ -1,0 +1,52 @@
+<div>
+    <app-sideBar></app-sideBar>
+
+
+<div class="col-12 d-flex justify-content-center pt-4">
+    <div class="Weather col-8">
+
+
+<div class="col-12 CityName">
+    <h1>Local Weather Card</h1>
+    <h1>{{dataRes.name}},{{dataRes.sys.country}}</h1>
+</div>
+<hr>
+<div class="col-12 TopInfo">
+    <img [src]="image" alt="">
+    <h1 style="font-size: 71pt;">{{dataRes.main.temp}}℃</h1>
+</div>
+<hr>
+<div class="col-12 MainInfo">
+    <div class="col-3  d-flex flex-column align-items-center">
+        <i class="fas fa-temperature-high fa-3x"></i>
+        <h3 class="p-2 textStat">{{dataRes.main.temp_max}}℃</h3>
+    </div>
+    
+    <div class="col-3 oneS d-flex flex-column align-items-center">
+        <i class="fas fa-temperature-low fa-3x"></i>
+<h3 class="p-2 textStat">{{dataRes.main.temp_min}}℃</h3>
+    </div>
+    <div class="col-3 oneS d-flex flex-column align-items-center">
+        <i class="fas fa-tint fa-3x"></i>
+<h3 class="p-2 textStat">{{dataRes.main.humidity}}%</h3>
+    </div>
+    <div class="col-3 oneS d-flex flex-column align-items-center">
+        <i class="fas fa-wind fa-3x"></i>
+        <h3 class="p-2 textStat">{{dataRes.wind.speed}}km/h</h3>
+    </div>
+</div>
+<hr>
+<div class="DateInfo col-12">
+
+
+    
+</div>
+    </div>
+   
+</div>
+ <div class="d-flex align-items-center flex-column pt-4"><h2 class="pl-4 col-5">Search Weather In Other City:</h2>
+  <form class="col-5 d-flex" #myForm="ngForm" nz-form (ngSubmit)="Search(name)">
+    <input [(ngModel)]="name" name="Plant" nz-input placeholder="Name" />
+    <button type="submit" nz-button nzType="primary">Search</button>
+    </form></div>
+</div>

@@ -6,20 +6,32 @@ import { SignIn } from '../Models/SignIn';
 import { AuthSrviceService } from '../Services/AuthSrvice.service';
 import jwt_decode from "jwt-decode";
 import { SignUp } from '../Models/SignUp';
+import { User } from '../Models/User';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls:['./home.component.css']
+  //providers:[User]
 })
 export class HomeComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService,
+  showStorage: {};
+  constructor(private http:HttpClient,private spinner: NgxSpinnerService,
+   
     private notifier: NotifierService,
     private authService: AuthSrviceService,
-    private router: Router){}
+    private router: Router){
+      this.showStorage=localStorage.getItem("UserInfo")||{}
+    }
     model = new SignIn();
     modelReg = new SignUp();
     confirmPassword: string;
+    getUser(model:string):Observable<User>{
+      console.log("LOGIN")
+      return this.http.get<User>("/api/Plant/GetUser?name="+model);
+    }
     submitForm() {
       console.log("Show");
     this.spinner.show();
@@ -41,16 +53,52 @@ export class HomeComponent implements OnInit {
           if (data.status === 200) {
             console.log("hide3");
             localStorage.setItem('token', data.token);
+           // localStorage.setItem('user','asdasd');
             var decode = jwt_decode(data.token);
             if (decode.roles === "Admin") {
               console.log("hide3");
+             // this.user=this.authService.getUser(model.)
               this.router.navigate(['/admin-panel'])
             }
             else if (decode.roles === "User") {
               console.log("hide3");
-              this.router.navigate(['/fetch-data'])
+               this.getUser(this.model.Email).subscribe(data=>{
+                 let temerId=setInterval(()=>{
+                 if(data!=null){ 
+                   console.log("DATA=",data); 
+
+                  // localStorage.setItem('user',data.FullName);
+                
+                  console.log(data.fullName);
+                 // const asll=data.FullName;
+                  localStorage.setItem('user',JSON.stringify(data));
+                  // this.authService.setUser(data.FullName);
+                   
+                  // var lal;
+                   //this.authService.UserInfo.subscribe(data=>{lal=data});
+                  /// console.log(this.authService.UserInfo);
+                  // console.log(this.showStorage);
+                 
+                  //console.log(localStorage.getItem("UserInfo"));
+                  clearInterval(temerId);
+                  this.router.navigate(['/fetch-data'])
+                 }
+                 
+               },1000)
+               
+                });
+               
+              
             }
             this.authService.statusLogin.emit(true);
+           
+            // this.authService.getUser(this.model.Email).subscribe(
+            //   data=>{
+            //     console.log("DATA:",data);
+            //    this.authService.UserInfo.emit(data);
+            // localStorage.setItem("UserInfo",data.FullName);
+            //   }
+            // );
           }
           else {
             console.log("hide3");
@@ -103,5 +151,8 @@ export class HomeComponent implements OnInit {
       }
     }
   
- ngOnInit(){}
+ ngOnInit(){
+   this.authService.LogOut();
+   localStorage.clear();
+ }
 }

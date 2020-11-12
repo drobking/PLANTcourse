@@ -14,7 +14,7 @@ namespace DataAccess.Entity
         [Required]
         public string Address { get; set; }
 
-        public ICollection<Plant> NamePlants { get; set; }
+        
         public virtual User User { get; set; }
     }
 }

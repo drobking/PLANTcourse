@@ -1,6 +1,7 @@
 <div class="d-flex row">
   <app-sideBar class="col-12"></app-sideBar>
-  <div class="flex-item col-12">
+  <div class="flex-item col-12" >
+    <h1 class="pl-3 badge badge-secondary">Current Plant: {{currentPlantName}}</h1>
     <div class="chart10" style="display: flex;">
       <div class="col-7 p-4">
     <canvas  baseChart width="400px" height="400px"
@@ -34,7 +35,7 @@
         <div class="chart d-flex d-flex justify-content-center">
           <canvas baseChart
             [data]="pieChartDataTem"
-            [labels]="pieChartLabels"
+            [labels]="pieChartLabelsTem"
             [chartType]="pieChartType"
             [options]="pieChartOptions"
             [plugins]="pieChartPlugins"
@@ -49,7 +50,7 @@
         <div class="chart d-flex d-flex justify-content-center">
           <canvas baseChart
             [data]="pieChartDataWater"
-            [labels]="pieChartLabels"
+            [labels]="pieChartLabelsWater"
             [chartType]="pieChartType"
             [options]="pieChartOptions"
             [plugins]="pieChartPlugins"
@@ -78,7 +79,13 @@
                 (chartClick)="chartClicked($event)" class="ChartsDiagram col-12"></canvas>
     </div>
   </div>
-  <form class="" #myForm="ngForm" nz-form (ngSubmit)="AddPlant()">
+  <h2 class="pl-4 col-4">View Other Your Plants:</h2>
+  <select (change)="ShowChart($event.target.value)" class="form-control col-5 pl-2"  id="exampleFormControlSelect1">
+    <option *ngFor="let product of userModel.plantNames">{{product}}</option>
+  </select>
+  
+  <h2 class="pl-4 col-5">Add New Plant In Your Account:</h2>
+  <form class="col-4 d-flex" #myForm="ngForm" nz-form (ngSubmit)="AddPlant(plantName)">
     <input [(ngModel)]="plantName" name="Plant" nz-input placeholder="Name" />
     <button type="submit" nz-button nzType="primary">Add</button>
     </form>

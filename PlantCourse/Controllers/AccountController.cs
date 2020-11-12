@@ -35,6 +35,8 @@ namespace PlantCourse.Controllers
             _jwtTokenService = jwtTokenService;
             _signInManager = signInManager;
         }
+
+      
         [HttpPost("register")]
         public async Task<ResultDTO> Register([FromBody] LoginRegisterDTO model)
         {

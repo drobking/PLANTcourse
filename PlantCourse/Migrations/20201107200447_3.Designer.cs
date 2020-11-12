@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace PlantCourse.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20201107200447_3")]
+    partial class _3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +41,15 @@ namespace PlantCourse.Migrations
                     b.Property<int>("Temperature")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserAdditioanalInfoId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Water")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserAdditioanalInfoId");
 
                     b.ToTable("Plants");
                 });
@@ -128,24 +135,6 @@ namespace PlantCourse.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserAdditioanalInfos");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.UsersAndPlants", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("namePlant")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nameUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("usersAndPlants");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -277,6 +266,13 @@ namespace PlantCourse.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DataAccess.Entity.Plant", b =>
+                {
+                    b.HasOne("DataAccess.Entity.UserAdditioanalInfo", null)
+                        .WithMany("NamePlants")
+                        .HasForeignKey("UserAdditioanalInfoId");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.UserAdditioanalInfo", b =>
